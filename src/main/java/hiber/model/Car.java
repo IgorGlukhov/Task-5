@@ -1,9 +1,16 @@
 package hiber.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.NaturalIdCache;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "cars")
+@Data
+@NoArgsConstructor
 public class Car {
     @Column
     private String model;
@@ -14,49 +21,12 @@ public class Car {
     private Long id;
     @OneToOne(mappedBy = "car")
     private User user;
-
     public Car(String model, int series) {
         this.model = model;
         this.series = series;
     }
-
-    public Car() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Override
     public String toString() {
         return model + " " + series + " " + id;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public int getSeries() {
-        return series;
-    }
-
-    public void setSeries(int series) {
-        this.series = series;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
